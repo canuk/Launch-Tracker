@@ -7,7 +7,7 @@ import json
 class Launches:
     def get_data(self):  # Get upcoming launch in json
         self.data = requests.get(
-            "https://ll.thespacedevs.com/2.2.0/launch/upcoming/"
+            "https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=5"
         ).json()
 
     def get_latest_rocket_date(
@@ -15,7 +15,7 @@ class Launches:
     ):  # Get launch date of previous rocket, needed for progress bar
         try:
             latest = requests.get(
-                "https://ll.thespacedevs.com/2.2.0/launch/previous/"
+                "https://ll.thespacedevs.com/2.2.0/launch/previous/?limit=1"
             ).json()["results"][0]["net"]
             with open(".latest.txt", "w") as f:
                 f.write(latest)
